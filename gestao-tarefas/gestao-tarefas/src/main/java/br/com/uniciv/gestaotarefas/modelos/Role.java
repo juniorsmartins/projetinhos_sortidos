@@ -1,7 +1,10 @@
 package br.com.uniciv.gestaotarefas.modelos;
 
+import br.com.uniciv.gestaotarefas.modelos.enuns.ERole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +18,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tarefas_categoria")
+@Table(name = "roles")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,14 +26,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode(of = {"id"})
-public class TarefaCategoria {
+public class Role {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id", nullable = false)
-  private Integer id;
-
-  @Column(name = "nome", length = 100, nullable = false)
-  private String nome;
+    @Enumerated(EnumType.STRING)
+    private ERole name;
 }
 
