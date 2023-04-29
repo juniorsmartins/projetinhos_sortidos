@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -52,8 +53,10 @@ public class Usuario {
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "usuarios_roles",
-    joinColumns = @JoinColumn(name = "usuario_id", nullable = false),
-    inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
+    joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id", columnDefinition = "INTEGER",
+        nullable = false, foreignKey = @ForeignKey(name = "fk_usuarios_roles_usuario_id")),
+    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", columnDefinition = "INTEGER",
+        nullable = false, foreignKey = @ForeignKey(name = "fk_usuarios_roles_role_id")))
   private Set<Role> roles = new HashSet<>();
 }
 
