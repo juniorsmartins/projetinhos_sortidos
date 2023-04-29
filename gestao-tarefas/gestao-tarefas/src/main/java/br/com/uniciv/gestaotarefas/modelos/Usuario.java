@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -45,6 +46,7 @@ public class Usuario {
   @Column(name = "senha", length = 50, nullable = false)
   private String senha;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
   private List<Tarefa> tarefas;
 
