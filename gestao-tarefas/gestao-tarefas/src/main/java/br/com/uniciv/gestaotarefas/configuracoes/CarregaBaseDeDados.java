@@ -51,6 +51,16 @@ public class CarregaBaseDeDados {
         .usuario(usuario)
         .build();
       tarefaRepositorio.save(tarefa);
+
+      var tarefa2 = Tarefa.builder()
+        .descricao("Aprender Spring Data Jpa")
+        .dataEntrega(LocalDate.now().plusDays(10))
+        .tarefaStatus(TarefaStatus.ABERTO)
+        .visivel(true)
+        .tarefaCategoria(tarefaCategoria)
+        .usuario(usuario)
+        .build();
+      tarefaRepositorio.save(tarefa2);
     };
   }
 }
