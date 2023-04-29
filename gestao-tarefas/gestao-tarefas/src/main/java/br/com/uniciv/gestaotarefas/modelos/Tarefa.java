@@ -3,9 +3,13 @@ package br.com.uniciv.gestaotarefas.modelos;
 import br.com.uniciv.gestaotarefas.modelos.enuns.TarefaStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,11 +45,16 @@ public class Tarefa {
   @Column(name = "visivel", nullable = false)
   private boolean visivel;
 
+  @Enumerated(EnumType.STRING)
   @Column(name = "tarefa_status", nullable = false)
   private TarefaStatus tarefaStatus;
 
-//  private TarefaCategoria tarefaCategoria;
-//
-//  private Usuario usuario;
+  @ManyToOne
+  @JoinColumn(name = "tarefa_categoria_id", nullable = false)
+  private TarefaCategoria tarefaCategoria;
+
+  @ManyToOne
+  @JoinColumn(name = "usuario_id", nullable = false)
+  private Usuario usuario;
 }
 
