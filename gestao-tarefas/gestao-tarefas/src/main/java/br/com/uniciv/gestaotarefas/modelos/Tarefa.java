@@ -13,6 +13,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -20,6 +24,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
+
 import java.time.LocalDate;
 
 @Entity
@@ -39,9 +45,12 @@ public class Tarefa {
   @Column(name = "id")
   private Integer id;
 
-  @Column(name = "descricao", length = 200, nullable = false)
+  @NotBlank(message = "{tarefa.descricao.not-blank}")
+  @Size(min = 5, max = 150, message = "{tarefa.descricao.size}")
+  @Column(name = "descricao", length = 150, nullable = false)
   private String descricao;
 
+  @FutureOrPresent(message = "{tarefa.dataEntrega.future-or-present}")
   @Column(name = "data_entrega", nullable = false)
   private LocalDate dataEntrega;
 
@@ -50,7 +59,7 @@ public class Tarefa {
 
   @Enumerated(EnumType.STRING)
   @Column(name = "tarefa_status", nullable = false)
-  private TarefaStatus tarefaStatus;
+  private TarefaStatus tarefaStatus = TarefaStatus.ABERTO;
 
   @ManyToOne
   @JoinColumn(name = "tarefa_categoria_id", referencedColumnName = "id", columnDefinition = "INTEGER",

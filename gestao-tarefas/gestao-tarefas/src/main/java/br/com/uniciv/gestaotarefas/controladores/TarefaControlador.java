@@ -2,6 +2,8 @@ package br.com.uniciv.gestaotarefas.controladores;
 
 import br.com.uniciv.gestaotarefas.modelos.Tarefa;
 import br.com.uniciv.gestaotarefas.repositorios.TarefaRepositorio;
+import br.com.uniciv.gestaotarefas.servicos.TarefaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,33 +20,32 @@ import java.util.Map;
 public class TarefaControlador {
 
   @Autowired
-  private TarefaRepositorio tarefaRepositorio;
+  private TarefaService tarefaService;
 
   @GetMapping("/tarefas")
   public List<Tarefa> listar(@RequestParam Map<String, String> parametros) {
 
     if (parametros.isEmpty()) {
-      return this.tarefaRepositorio.findAll();
+      return this.tarefaService.listar();
     }
 
     var descricao = parametros.get("descricao");
-    return this.tarefaRepositorio.findByDescricaoLike("%" + descricao + "%");
+    return this.tarefaService.consultarPorDescricao(descricao);
   }
 
   @GetMapping("/tarefas/{id}")
   public Tarefa consultarPorId(@PathVariable Integer id) {
-    return this.tarefaRepositorio.findById(id)
-        .orElse(null);
+    return this.tarefaService.consultarPorId(id);
   }
 
   @PostMapping("/tarefas")
-  public Tarefa salvar(@RequestBody Tarefa tarefa) {
-    return this.tarefaRepositorio.save(tarefa);
+  public Tarefa salvar(@RequestBody @Valid Tarefa tarefa) {
+    return this.tarefaService.salvar(tarefa);
   }
 
   @DeleteMapping("/tarefas/{id}")
   public void excluir(@PathVariable Integer id) {
-    this.tarefaRepositorio.deleteById(id);
+    this.tarefaService.deletarPorId(id);
   }
 }
 
