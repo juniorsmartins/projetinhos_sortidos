@@ -45,17 +45,14 @@ public class Tarefa {
   @Column(name = "id")
   private Integer id;
 
-  @NotBlank(message = "{tarefa.descricao.not-blank}")
-  @Size(min = 5, max = 150, message = "{tarefa.descricao.size}")
   @Column(name = "descricao", length = 150, nullable = false)
   private String descricao;
 
-  @FutureOrPresent(message = "{tarefa.dataEntrega.future-or-present}")
   @Column(name = "data_entrega", nullable = false)
   private LocalDate dataEntrega;
 
   @Column(name = "visivel", nullable = false)
-  private boolean visivel;
+  private boolean visivel = Boolean.TRUE;
 
   @Enumerated(EnumType.STRING)
   @Column(name = "tarefa_status", nullable = false)
