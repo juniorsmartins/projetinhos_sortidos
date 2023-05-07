@@ -1,15 +1,12 @@
 package br.com.uniciv.gestaotarefas.repositorios;
 
-import br.com.uniciv.gestaotarefas.modelos.TarefaCategoria;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class TarefaRepositorioTest {
+class TarefaRepositorioUnitTest {
 
   @Autowired
   private TarefaRepositorio tarefaRepositorio;

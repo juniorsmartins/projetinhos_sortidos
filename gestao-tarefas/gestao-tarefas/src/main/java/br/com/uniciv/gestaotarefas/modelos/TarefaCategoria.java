@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -30,7 +32,9 @@ public class TarefaCategoria {
   @Column(name = "id", nullable = false)
   private Integer id;
 
-  @Column(name = "nome", length = 100, nullable = false)
+  @NotBlank(message = "Não pode ser nulo ou vazio ou estar em branco.")
+  @Size(max = 50, message = "Deve ter no máximo 50 caracteres.")
+  @Column(name = "nome", length = 50, nullable = false)
   private String nome;
 }
 
