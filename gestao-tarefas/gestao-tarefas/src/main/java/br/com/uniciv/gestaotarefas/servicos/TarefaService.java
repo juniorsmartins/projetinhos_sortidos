@@ -46,8 +46,19 @@ public class TarefaService {
 
     tarefa.setTarefaStatus(TarefaStatus.PROGRESSO);
 
-    this.salvar(tarefa);
-    return tarefa;
+    return this.salvar(tarefa);
+  }
+
+  public Tarefa concluirTarefaPorId(Integer id) {
+    Tarefa tarefa = this.consultarPorId(id);
+
+    if (TarefaStatus.CANCELADO.equals(tarefa.getTarefaStatus())) {
+      throw new TarefaStatusException();
+    }
+
+    tarefa.setTarefaStatus(TarefaStatus.CONCLUIDO);
+
+    return this.salvar(tarefa);
   }
 }
 
