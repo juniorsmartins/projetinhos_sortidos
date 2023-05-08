@@ -1,14 +1,11 @@
 package br.com.uniciv.gestaotarefas.servicos;
 
 import br.com.uniciv.gestaotarefas.excecoes.TarefaStatusException;
-import br.com.uniciv.gestaotarefas.modelos.Tarefa;
 import br.com.uniciv.gestaotarefas.modelos.enuns.TarefaStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class TarefaServiceIntegrationTest {
