@@ -59,7 +59,12 @@ public class TarefaControlador {
 
     EntityModel<TarefaResponse> response = EntityModel.of(resultado, WebMvcLinkBuilder
       .linkTo(WebMvcLinkBuilder.methodOn(TarefaControlador.class).consultarPorId(id)).withSelfRel(),
-      WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TarefaControlador.class).listar(new HashMap<>())).withRel("tarefas"));
+      WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(
+        TarefaControlador.class).listar(new HashMap<>())).withRel("tarefas"),
+      WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(
+        TarefaCategoriaControlador.class).consultarPorId(tarefa.getTarefaCategoria().getId())).withRel("categoria"),
+      WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(
+        UsuarioControlador.class).consultarPorId(tarefa.getUsuario().getId())).withRel("usuario"));
 
     return response;
   }
