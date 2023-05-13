@@ -52,11 +52,23 @@ public class TarefaService {
   public Tarefa concluirTarefaPorId(Integer id) {
     Tarefa tarefa = this.consultarPorId(id);
 
-    if (TarefaStatus.CANCELADO.equals(tarefa.getTarefaStatus())) {
+    if (!TarefaStatus.PROGRESSO.equals(tarefa.getTarefaStatus())) {
       throw new TarefaStatusException();
     }
 
     tarefa.setTarefaStatus(TarefaStatus.CONCLUIDO);
+
+    return this.salvar(tarefa);
+  }
+
+  public Tarefa cancelarTarefaPorId(Integer id) {
+    Tarefa tarefa = this.consultarPorId(id);
+
+    if (TarefaStatus.CONCLUIDO.equals(tarefa.getTarefaStatus())) {
+      throw new TarefaStatusException();
+    }
+
+    tarefa.setTarefaStatus(TarefaStatus.CANCELADO);
 
     return this.salvar(tarefa);
   }
