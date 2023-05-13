@@ -10,7 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,12 +69,14 @@ public class TarefaControlador {
   }
 
   @PostMapping
-  public TarefaResponse salvar(@RequestBody @Valid TarefaRequest tarefaRequest) {
+  public ResponseEntity<EntityModel<TarefaResponse>> salvar(@RequestBody @Valid TarefaRequest tarefaRequest) {
     var tarefa = this.mapper.map(tarefaRequest, Tarefa.class);
+    var tarefaSalva = this.tarefaService.salvar(tarefa);
+    var tarefaComHateoas = this.tarefaHateoas.toModel(tarefaSalva);
 
-    tarefa = this.tarefaService.salvar(tarefa);
-
-    return this.mapper.map(tarefa, TarefaResponse.class);
+    return ResponseEntity
+      .created(tarefaComHateoas.getRequiredLink(IanaLinkRelations.SELF).toUri())
+      .body(tarefaComHateoas);
   }
 
   @PutMapping(path = "/{id}/iniciar")
