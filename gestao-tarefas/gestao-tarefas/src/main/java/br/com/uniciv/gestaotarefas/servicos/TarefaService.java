@@ -60,5 +60,13 @@ public class TarefaService {
 
     return this.salvar(tarefa);
   }
+
+  public Tarefa cancelarTarefaPorId(Integer id) {
+    Tarefa tarefa = this.consultarPorId(id);
+
+    tarefa.setTarefaStatus(TarefaStatus.CANCELADO);
+
+    return this.salvar(tarefa);
+  }
 }
 
