@@ -2,9 +2,11 @@ package br.com.uniciv.gestaotarefas.controladores;
 
 import br.com.uniciv.gestaotarefas.controladores.dtos.response.TarefaCategoriaResponse;
 import br.com.uniciv.gestaotarefas.controladores.dtos.response.UsuarioResponse;
+import br.com.uniciv.gestaotarefas.controladores.hateoas.UsuarioHateoas;
 import br.com.uniciv.gestaotarefas.servicos.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +22,17 @@ public class UsuarioControlador {
   @Autowired
   private ModelMapper mapper;
 
+  @Autowired
+  private UsuarioHateoas hateoas;
+
   @GetMapping(path = "/{id}")
-  public UsuarioResponse consultarPorId(@PathVariable Integer id) {
-    return this.mapper
-      .map(this.usuarioService.consultarPorId(id), UsuarioResponse.class);
+  public EntityModel<UsuarioResponse> consultarPorId(@PathVariable Integer id) {
+
+    var usuario = this.usuarioService.consultarPorId(id);
+    var usuarioComHateoas = this.hateoas.toModel(usuario);
+
+    return usuarioComHateoas;
   }
+
 }
 
