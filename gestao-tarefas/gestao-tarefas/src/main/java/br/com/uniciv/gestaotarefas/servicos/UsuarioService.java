@@ -4,9 +4,13 @@ import br.com.uniciv.gestaotarefas.modelos.Usuario;
 import br.com.uniciv.gestaotarefas.repositorios.RoleRepository;
 import br.com.uniciv.gestaotarefas.repositorios.UsuarioRepositorio;
 import javax.persistence.EntityNotFoundException;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,6 +37,31 @@ public class UsuarioService {
       .map(this::encodarSenha)
       .map(this::getRoles)
       .map(this.usuarioRepositorio::save)
+      .orElseThrow();
+  }
+
+  @Transactional
+  public Usuario atualizar(final Integer id, Usuario usuario) {
+
+    return this.usuarioRepositorio.findById(id)
+      .map(user -> {
+        var usuarioNovo = this.encodarSenha(usuario);
+        usuarioNovo = this.getRoles(usuarioNovo);
+
+        BeanUtils.copyProperties(usuarioNovo, user, "id");
+        return user;
+      })
+      .orElseThrow();
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE)
+  public void deletarPorId(final Integer id) {
+
+    this.usuarioRepositorio.findById(id)
+      .map(user -> {
+        this.usuarioRepositorio.delete(user);
+        return true;
+      })
       .orElseThrow();
   }
 
