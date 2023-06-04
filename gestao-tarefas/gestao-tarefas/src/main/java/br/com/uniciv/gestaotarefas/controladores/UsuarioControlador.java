@@ -1,6 +1,5 @@
 package br.com.uniciv.gestaotarefas.controladores;
 
-import br.com.uniciv.gestaotarefas.controladores.dtos.response.TarefaCategoriaResponse;
 import br.com.uniciv.gestaotarefas.controladores.dtos.response.UsuarioResponse;
 import br.com.uniciv.gestaotarefas.controladores.hateoas.UsuarioHateoas;
 import br.com.uniciv.gestaotarefas.servicos.UsuarioService;
