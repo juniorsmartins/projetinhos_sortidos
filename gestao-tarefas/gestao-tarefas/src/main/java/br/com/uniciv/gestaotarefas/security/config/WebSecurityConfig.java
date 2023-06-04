@@ -1,5 +1,7 @@
 package br.com.uniciv.gestaotarefas.security.config;
 
+import br.com.uniciv.gestaotarefas.security.service.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,19 +20,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private static final String[] PATHS = new String[] {"/tarefas/**", "/categorias/**", "/usuarios/**"};
+  private static final String[] PATHS = new String[] {"/tarefas/**", "/categorias/**", "/usuarios/**", "/"};
+
+  @Autowired
+  private UserDetailsServiceImpl userDetailsService;
 
   /**
    *  AUTENTICAÇÃO
-   *  configura usuário em memória
    */
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-      .passwordEncoder(passwordEncoder())
-        .withUser("usuario")
-        .password(passwordEncoder().encode("senha"))
-        .roles("USER");
+    auth.userDetailsService(userDetailsService);
   }
 
   /**

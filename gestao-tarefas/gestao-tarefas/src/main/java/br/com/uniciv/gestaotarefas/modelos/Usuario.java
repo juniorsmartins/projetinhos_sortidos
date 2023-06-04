@@ -44,7 +44,7 @@ public class Usuario {
   @Column(name = "nome", length = 100, nullable = false)
   private String nome;
 
-  @Column(name = "senha", length = 50, nullable = false)
+  @Column(name = "senha", nullable = false)
   private String senha;
 
   @JsonIgnore
