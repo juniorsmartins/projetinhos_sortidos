@@ -5,6 +5,9 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import br.com.uniciv.gestaotarefas.controladores.dtos.TarefaCategoriaResumo;
+import br.com.uniciv.gestaotarefas.controladores.dtos.UsuarioResumo;
 import lombok.Getter;
 import lombok.Setter;
 

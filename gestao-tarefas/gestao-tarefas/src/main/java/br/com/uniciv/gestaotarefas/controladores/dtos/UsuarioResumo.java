@@ -1,4 +1,4 @@
-package br.com.uniciv.gestaotarefas.controladores.dtos.request;
+package br.com.uniciv.gestaotarefas.controladores.dtos;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
