@@ -2,7 +2,7 @@ package br.com.uniciv.gestaotarefas.servicos;
 
 import br.com.uniciv.gestaotarefas.modelos.TarefaCategoria;
 import br.com.uniciv.gestaotarefas.repositorios.TarefaCategoriaRepositorio;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,15 +1,15 @@
 package br.com.uniciv.gestaotarefas.controladores.dtos.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioResumo {
+public final class UsuarioResumo {
 
   @NotNull(message = "{usuario.id.not-null}")
   @PositiveOrZero(message = "{usuario.id.positive-or-zero}")

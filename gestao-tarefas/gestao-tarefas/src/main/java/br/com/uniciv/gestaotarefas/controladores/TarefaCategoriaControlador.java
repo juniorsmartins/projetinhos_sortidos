@@ -5,7 +5,7 @@ import br.com.uniciv.gestaotarefas.controladores.dtos.response.TarefaCategoriaRe
 import br.com.uniciv.gestaotarefas.controladores.hateoas.TarefaCategoriaHateoas;
 import br.com.uniciv.gestaotarefas.modelos.TarefaCategoria;
 import br.com.uniciv.gestaotarefas.servicos.TarefaCategoriaService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;

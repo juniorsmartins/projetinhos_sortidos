@@ -2,7 +2,7 @@ package br.com.uniciv.gestaotarefas.servicos;
 
 import br.com.uniciv.gestaotarefas.modelos.Usuario;
 import br.com.uniciv.gestaotarefas.repositorios.UsuarioRepositorio;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

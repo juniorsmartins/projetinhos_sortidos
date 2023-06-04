@@ -5,7 +5,7 @@ import br.com.uniciv.gestaotarefas.controladores.dtos.response.TarefaResponse;
 import br.com.uniciv.gestaotarefas.controladores.hateoas.TarefaHateoas;
 import br.com.uniciv.gestaotarefas.modelos.Tarefa;
 import br.com.uniciv.gestaotarefas.servicos.TarefaService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

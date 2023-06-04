@@ -4,7 +4,7 @@ import br.com.uniciv.gestaotarefas.excecoes.TarefaStatusException;
 import br.com.uniciv.gestaotarefas.modelos.Tarefa;
 import br.com.uniciv.gestaotarefas.modelos.enuns.TarefaStatus;
 import br.com.uniciv.gestaotarefas.repositorios.TarefaRepositorio;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
