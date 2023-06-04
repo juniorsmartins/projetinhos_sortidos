@@ -1,6 +1,6 @@
 package br.com.uniciv.gestaotarefas.controladores;
 
-import br.com.uniciv.gestaotarefas.controladores.dtos.request.TarefaCategoriaResumo;
+import br.com.uniciv.gestaotarefas.controladores.dtos.TarefaCategoriaResumo;
 import br.com.uniciv.gestaotarefas.controladores.dtos.response.TarefaCategoriaResponse;
 import br.com.uniciv.gestaotarefas.controladores.hateoas.TarefaCategoriaHateoas;
 import br.com.uniciv.gestaotarefas.modelos.TarefaCategoria;
