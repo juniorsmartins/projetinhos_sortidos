@@ -16,7 +16,6 @@ public class UsuarioHateoas implements RepresentationModelAssembler<Usuario, Ent
   @Autowired
   private ModelMapper mapper;
 
-
   @Override
   public EntityModel<UsuarioResponse> toModel(Usuario entity) {
 
@@ -26,7 +25,7 @@ public class UsuarioHateoas implements RepresentationModelAssembler<Usuario, Ent
       WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioControlador.class)
         .consultarPorId(dtoResponse.getId())).withSelfRel());
 
-    return null;
+    return dtoComHateoas;
   }
 }
 

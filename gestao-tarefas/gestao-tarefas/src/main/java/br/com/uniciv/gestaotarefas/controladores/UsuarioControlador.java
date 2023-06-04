@@ -13,9 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -41,7 +43,7 @@ public class UsuarioControlador {
   }
 
   @PostMapping
-  public ResponseEntity<EntityModel<UsuarioResponse>> salvarUsuario(UsuarioRequest dtoRequest) {
+  public ResponseEntity<EntityModel<UsuarioResponse>> salvarUsuario(@RequestBody @Valid final UsuarioRequest dtoRequest) {
 
     var response = Optional.of(dtoRequest)
       .map(dto -> this.mapper.map(dto, Usuario.class))
