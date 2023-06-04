@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class TarefaResponse {
+public final class TarefaResponse {
 
   private Integer id;
 
