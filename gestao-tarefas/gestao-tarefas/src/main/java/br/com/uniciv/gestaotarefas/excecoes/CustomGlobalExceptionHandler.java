@@ -4,7 +4,6 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.mediatype.problem.Problem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -45,24 +44,24 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
       .body(problema);
   }
 
-  @Override
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
-                                                                HttpStatusCode status, WebRequest request) {
-
-    var erros = ex.getBindingResult()
-      .getFieldErrors()
-      .stream()
-      .map(erro -> MensagemRetornoErro.builder()
-        .anotacao(erro.getCode())
-        .campo(erro.getField())
-        .mensagem(erro.getDefaultMessage())
-        .dataHora(OffsetDateTime.now())
-        .build())
-      .toList();
-
-    return ResponseEntity
-      .badRequest()
-      .body(erros);
-  }
+//  @Override
+//  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
+//                                                                HttpStatusCode status, WebRequest request) {
+//
+//    var erros = ex.getBindingResult()
+//      .getFieldErrors()
+//      .stream()
+//      .map(erro -> MensagemRetornoErro.builder()
+//        .anotacao(erro.getCode())
+//        .campo(erro.getField())
+//        .mensagem(erro.getDefaultMessage())
+//        .dataHora(OffsetDateTime.now())
+//        .build())
+//      .toList();
+//
+//    return ResponseEntity
+//      .badRequest()
+//      .body(erros);
+//  }
 }
 
