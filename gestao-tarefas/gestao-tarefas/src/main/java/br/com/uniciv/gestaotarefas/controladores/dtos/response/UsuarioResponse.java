@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioResponse {
+public final class UsuarioResponse {
 
   private Integer id;
 

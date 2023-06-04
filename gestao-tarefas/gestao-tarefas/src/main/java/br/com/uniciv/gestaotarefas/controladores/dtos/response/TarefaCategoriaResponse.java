@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TarefaCategoriaResponse {
+public final class TarefaCategoriaResponse {
 
   private Integer id;
 
