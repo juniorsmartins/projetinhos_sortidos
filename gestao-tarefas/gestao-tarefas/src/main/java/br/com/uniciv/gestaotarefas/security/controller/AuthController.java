@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/auth")
 public class AuthController {
@@ -17,7 +19,7 @@ public class AuthController {
   private LoginService loginService;
 
   @PostMapping(path = "/login")
-  public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<?> login(@RequestBody @Valid LoginRequest loginRequest) {
 
     var jwtResponse = this.loginService.autenticarUsuario(loginRequest.getNome(), loginRequest.getSenha());
 

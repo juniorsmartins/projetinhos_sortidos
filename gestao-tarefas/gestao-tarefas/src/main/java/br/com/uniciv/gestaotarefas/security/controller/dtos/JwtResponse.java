@@ -18,14 +18,13 @@ public class JwtResponse {
 
   public JwtResponse(String token, Integer id, String username, List<String> roles) {
     this.token = token;
-    this.type = type;
     this.id = id;
     this.username = username;
     this.roles = roles;
   }
 
   public boolean isAdmin() {
-    return roles.contains(ERole.ROLE_ADMIN.name());
+    return this.roles.contains(ERole.ROLE_ADMIN.name());
   }
 }
 
