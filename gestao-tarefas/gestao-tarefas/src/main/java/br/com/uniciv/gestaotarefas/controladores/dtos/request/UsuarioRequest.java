@@ -19,7 +19,7 @@ public class UsuarioRequest {
   private String nome;
 
   @NotBlank(message = "{usuario.nome.not-blank}")
-  @Size(min = 10, message = "{usuario.senha.size}")
+  @Size(min = 6, message = "{usuario.senha.size}")
   private String senha;
 
   @NotNull

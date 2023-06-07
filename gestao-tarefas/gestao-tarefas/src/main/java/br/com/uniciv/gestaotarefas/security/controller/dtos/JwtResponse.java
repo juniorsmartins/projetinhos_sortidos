@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class JwtResponse {
 
-    private String token;
+  private String token;
   private String type = "Bearer";
   private Integer id;
   private String username;
