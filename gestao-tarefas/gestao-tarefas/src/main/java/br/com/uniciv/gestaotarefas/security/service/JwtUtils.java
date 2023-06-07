@@ -36,7 +36,7 @@ public class JwtUtils {
   public String getUsernameFromJwtToken(String token) {
     return Jwts.parser()
       .setSigningKey(jwtSecret)
-      .parseClaimsJwt(token)
+      .parseClaimsJws(token)
       .getBody()
       .getSubject();
   }
@@ -45,7 +45,7 @@ public class JwtUtils {
     try {
       Jwts.parser()
         .setSigningKey(jwtSecret)
-        .parseClaimsJwt(authToken);
+        .parseClaimsJws(authToken);
       return true;
     } catch (Exception exception) {
       exception.printStackTrace();
