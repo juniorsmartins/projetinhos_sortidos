@@ -1,5 +1,6 @@
 package br.com.uniciv.gestaotarefas.security.config;
 
+import br.com.uniciv.gestaotarefas.security.service.AuthEntryPointJwt;
 import br.com.uniciv.gestaotarefas.security.service.AuthTokenFilter;
 import br.com.uniciv.gestaotarefas.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private UserDetailsServiceImpl userDetailsService;
+
+  @Autowired
+  private AuthEntryPointJwt unauthorizedHandler;
 
   /**
    *  AUTENTICAÇÃO
@@ -60,7 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/h2-console/**").permitAll()
         .anyRequest().authenticated()
       .and()
-        .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
   }
 
   @Bean
